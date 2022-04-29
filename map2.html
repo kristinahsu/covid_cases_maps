@@ -80,7 +80,7 @@
 
         const grades = [1, 1000, 5000], 
             colors = ['rgb(208,209,230)', 'rgb(103,169,207)', 'rgb(1,108,89)'], 
-            radii = [5, 15, 20];
+            radii = [3, 5, 12];
 
         map.on('load', () => {
             map.addSource('covid_cases', {
@@ -96,7 +96,21 @@
                 'paint': {
                     // increase the radius of the circle as the zoom level and dbh value increases
                     'circle-radius': {
-                        
+                        'property': 'cases',
+                            'stops': [
+                                [{
+                                    zoom: 5,
+                                    value: grades[0]
+                                }, radii[0]],
+                                [{
+                                    zoom: 5,
+                                    value: grades[1]
+                                }, radii[1]],
+                                [{
+                                    zoom: 5,
+                                    value: grades[2]
+                                }, radii[2]]
+                            ]
                     },
                     'circle-color': {
                         'property': 'cases',
