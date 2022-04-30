@@ -2,7 +2,8 @@
 
 This project is about mapping COVID-19 cases and rates in the United States by county level in the year 2020. By navigating through these two maps, the users would have a better understanding of how severe COVID-19 has impacted each county.
 
-By either hovering or clicking the county in these interactive maps, the users will get specific COVID-19 data of the county. 
+By either hovering or clicking the county in these interactive maps, the users will get specific COVID-19 data of the county.
+_(The maps are projected in Albers equal-area conic projection to preserve land shape!)_
 
 ### Map 1: [COVID-19 Rates Choropleth Map](https://kristinahsu.github.io/covid_data_maps/map1.html)
 ![Map 1: COVID-19 Rates Choropleth Map](img/map1.png)
