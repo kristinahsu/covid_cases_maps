@@ -8,9 +8,16 @@ let map = new mapboxgl.Map({
     projection: 'albers'
 });
 
-const grades = [1, 1000, 5000], 
-    colors = ['rgb(208,209,230)', 'rgb(103,169,207)', 'rgb(1,108,89)'], 
-    radii = [3, 5, 12];
+const grades = [1, 2000, 4000, 6500, 9000], 
+    colors = ['rgb(237,248,251)', 'rgb(178,226,226)', 'rgb(102,194,164)', 'rgb(44,162,95)', 'rgb(0,109,44)'], 
+    radii = [3, 5, 7, 9, 11];
+    layers = [
+        '1-1999',
+        '2000-3999',
+        '4000-6499',
+        '6500-8999',
+        '9000+'
+    ];
 
 map.on('load', () => {
     map.addSource('covid_cases', {
@@ -29,14 +36,18 @@ map.on('load', () => {
                 'stops': [
                     [{zoom: 5, value: grades[0]}, radii[0]],
                     [{zoom: 5, value: grades[1]}, radii[1]],
-                    [{zoom: 5, value: grades[2]}, radii[2]]
+                    [{zoom: 5, value: grades[2]}, radii[2]],
+                    [{zoom: 5, value: grades[3]}, radii[3]], 
+                    [{zoom: 5, value: grades[4]}, radii[4]]
             ]},
             'circle-color': {
                 'property': 'cases',
                 'stops': [
                     [grades[0], colors[0]],
                     [grades[1], colors[1]],
-                    [grades[2], colors[2]]
+                    [grades[2], colors[2]],
+                    [grades[3], colors[3]],
+                    [grades[4], colors[4]]
                 ]},
                 'circle-stroke-color': 'white',
                 'circle-stroke-width': 1,
@@ -62,7 +73,7 @@ const legend = document.getElementById('legend');
 var labels = ['<strong>Cases</strong>'], vbreak;
 
 //iterate through grades and create a scaled circle and label for each
-for (var i = 0; i < grades.length; i++) { vbreak = grades[i];
+for (var i = 0; i < grades.length; i++) { vbreak = layers[i];
     // you need to manually adjust the radius of each dot on the legend 
     // in order to make sure the legend can be properly referred to the dot on the map.
     dot_radii = 1.7 * radii[i];
@@ -74,7 +85,6 @@ for (var i = 0; i < grades.length; i++) { vbreak = grades[i];
         
 // add the data source
 const source =
-    '<p style="text-align: right; font-size:10pt">Source: <a href="https://earthquake.usgs.gov/earthquakes/">USGS</a></p>';
-    // combine all the html codes.
-    
-legend.innerHTML = labels.join('') + source;
+    '<p style="font-size:10pt">Source: NYTimes <a href="https://github.com/nytimes/covid-19-data/blob/43d32dde2f87bd4dafbb7d23f5d9e878124018b8/live/us-counties.csv">(Case)</a>, US Census Bureau<a href="https://data.census.gov/cedsci/table?g=0100000US%24050000&d=ACS%205-Year%20Estimates%20Data%20Profiles&tid=ACSDP5Y2018.DP05&hidePreview=true">(Population)</a> & <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html">(Shapefile)</a></p>'
+// combine all the html codes.
+legend.innerHTML = labels.join('')

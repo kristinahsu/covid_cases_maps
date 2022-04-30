@@ -63,7 +63,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiamFrb2J6aGFvIiwiYSI6ImNpcms2YWsyMzAwMmtmbG5ic
 
                 // create legend
                 const legend = document.getElementById('legend');
-                legend.innerHTML = "<b>Rates<br>(cases/per 1000 population)</b><br><br>";
+                legend.innerHTML = "<b>Rates<br>(cases / per 1000 people)</b><br><br>";
 
                 layers.forEach((layer, i) => {
                     const color = colors[i];
@@ -87,7 +87,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiamFrb2J6aGFvIiwiYSI6ImNpcms2YWsyMzAwMmtmbG5ic
                 document.getElementById('text-escription').innerHTML = county.length ?
                     `<h3>${county[0].properties.county}, ${county[0].properties.state}</h3>
                     <p><strong><em>${county[0].properties.rates}</strong> cases per 1000 people</em></p>` :
-                    `<p>Hover over a county!</p>`;
+                    `<p>Hover over a county to examine the data!</p>`;
             });
         };
 
